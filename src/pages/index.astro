@@ -1,19 +1,208 @@
 ---
-import ModelSSection from "../components/ModelSSection.astro"
-import LandingHeader from "../components/LandingHeader.astro"
-import HeroSection from "../components/HeroSection.astro"
-import Layout from "../layouts/Layout.astro"
----
+import Layout from "../layouts/Layout.astro";
+import LandingHeader from "../components/LandingHeader.astro";
+import HeroSection from "../components/HeroSection.astro";
+import HomeSection from "../components/HomeSection.astro";
 
+const Sections = [
+	{
+		dataHeaderColor: "black",
+		image: "/Homepage-Model-3-Desktop-LHD.avif",
+		title: "Model 3",
+		subtitle: {
+			text: "Starting at $32,740",
+			underline: false
+		},
+		description: {
+			text: "After Federal Tax Credit"
+		},
+		buttons: [
+			{
+				text: "Explore Inventory",
+				href: "#",
+				lightTheme: true
+			},
+			{
+				text: "Custom Order",
+				href: "#",
+				lightTheme: false
+			}
+		],
+		bottomText: "3 months free Supercharging when you take delivery of a new Inventory vehicle by June 30"
+	},
+	{
+		dataHeaderColor: "black",
+		image: "/Homepage-Model-Y-Global-Desktop.avif",
+		title: "Model Y",
+		subtitle: {
+			text: "Starting at $40,240",
+			underline: false
+		},
+		description: {
+			text: "After Federal Tax Credit"
+		},
+		buttons: [
+			{
+				text: "Explore Inventory",
+				href: "#",
+				lightTheme: true
+			},
+			{
+				text: "Custom Order",
+				href: "#",
+				lightTheme: false
+			}
+		]
+	},
+	{
+		dataHeaderColor: "black",
+		image: "/Homepage-Model-S-Desktop-LHD-6.22.avif",
+		title: "Model S",
+		subtitle: {
+			text: "Explore Inventory",
+			underline: true
+		},
+		buttons: [
+			{
+				text: "Custom Order",
+				href: "#",
+				lightTheme: true
+			},
+			{
+				text: "Demo Drive",
+				href: "#",
+				lightTheme: false
+			}
+		]
+	},
+	{
+		dataHeaderColor: "black",
+		image: "/Homepage-Model-X-Desktop-LHD.avif",
+		title: "Model X",
+		subtitle: {
+			text: "Explore Inventory",
+			underline: true
+		},
+		buttons: [
+			{
+				text: "Custom Order",
+				href: "#",
+				lightTheme: true
+			},
+			{
+				text: "Demo Drive",
+				href: "#",
+				lightTheme: false
+			}
+		]
+	},
+	{
+		dataHeaderColor: "black",
+		image: "/425_HP_SolarPanels_D.avif",
+		title: "Solar Pannels",
+		subtitle: {
+			text: "Schedule a Virtual Consultation",
+			underline: true
+		},
+		buttons: [
+			{
+				text: "Order Now",
+				href: "#",
+				lightTheme: true
+			},
+			{
+				text: "Learn More",
+				href: "#",
+				lightTheme: false
+			}
+		]
+	},
+	{
+		dataHeaderColor: "black",
+		image: "/Homepage-SolarRoof-Desktop-Global.avif",
+		title: "Solar Roof",
+		subtitle: {
+			text: "Produce Clean Energy From Your Roof",
+			underline: false
+		},
+		buttons: [
+			{
+				text: "Order Now",
+				href: "#",
+				lightTheme: true
+			},
+			{
+				text: "Learn More",
+				href: "#",
+				lightTheme: false
+			}
+		]
+	},
+	{
+		dataHeaderColor: "black",
+		image: "/Desktop_Accessories.avif",
+		title: "Accessories",
+		buttons: [
+			{
+				text: "Shop Now",
+				href: "#",
+				lightTheme: true
+			}
+		],
+		footerLinks: [
+			{
+				text: "Tesla © 2023",
+				href: "#"
+			},
+			{
+				text: "Privacy & Legal",
+				href: "#"
+			},
+			{
+				text: "Vehicle Recalls",
+				href: "#"
+			},
+			{
+				text: "Contact",
+				href: "#"
+			},
+			{
+				text: "News",
+				href: "#"
+			},
+			{
+				text: "Get Updates",
+				href: "#"
+			},
+			{
+				text: "Locations",
+				href: "#"
+			}
+		]
+	}
+]
+---
 <Layout title="Welcome to Tesla">
+	<link rel="icon" type="image/x-icon" href="./public/favicon.ico">
 	<LandingHeader />
 	<main class="snap-y snap-mandatory relative w-full h-screen overflow-auto">
 		<div class="snap-center">
 			<HeroSection />
 		</div>
-		<div class="snap-center">
-			<ModelSSection />
-		</div>
-		
+		<!-- Show on Github copilot -->
+		{Sections.map((section) => (
+			<div class="snap-center">
+				<HomeSection
+					dataHeaderColor={section.dataHeaderColor}
+					image={section.image}
+					title={section.title}
+					subtitle={section.subtitle}
+					description={section.description}
+					buttons={section.buttons}
+					bottomText={section.bottomText}
+					footerLinks={section.footerLinks}
+				/>
+			</div>
+		))}
 	</main>
 </Layout>

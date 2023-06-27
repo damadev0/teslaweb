@@ -1,0 +1,63 @@
+---
+// Still have to receive Footer and small bottom letter
+const { dataHeaderColor, image, title, subtitle, description, buttons, bottomText, footerLinks } = Astro.props
+const darkButton = "border-[3px] bg-zinc-700 border-zinc-700 backdrop-blur-sm rounded font-medium text-sm text-white px-20 py-2 inline-block hover:bg-zinc-300 hover:border-zinc-300 hover:text-zinc-700 transition-colors"
+const lightButton = "border-[3px] border-zinc-300 bg-zinc-300 backdrop-blur-sm rounded font-medium text-sm text-zinc-700 px-20 py-2 inline-block hover:bg-zinc-700 hover:border-zinc-700 hover:text-white transition-colors"
+
+---
+
+<section
+  class="landing-section bg-black w-full h-screen text-center relative overflow-hidden"
+  data-header-color={dataHeaderColor}
+>
+  <div class="z-30 relative h-full flex flex-col">
+
+    <!-- Titles -->
+    <header class="pt-20">
+      <h2 class="text-black text-[40px] font-medium">{title}</h2>
+      { subtitle && <p class={`text-black text-sm ${subtitle.underline && "underline"}`} >{subtitle.text}</p>}
+      { description && <p class="text-black text-sm">{description.text}</p> }
+    </header>
+
+    <!-- Buttons -->
+    <!-- Must accept one button on black and on white -->
+    <!-- Change buttons background color -->
+    <footer class="flex flex-col flex-grow justify-end pb-8">
+      <div class="flex gap-x-6 mx-auto">
+        {buttons.map(button => (
+          <a
+            class={button.lightTheme ? lightButton : darkButton}
+            href={button.href}
+          >
+            {button.text}
+          </a>
+        ))
+        }
+      </div>
+    </footer>
+
+    <!-- Legal text -->
+    {bottomText && <div class="pb-4 text-xs">  <p>{bottomText}</p> </div> }
+  
+    <!-- Footer Links -->
+    { footerLinks &&
+      <nav class="mb-20">
+        <ul class="flex justify-center align-center [&>li>a]:text-xs [&>li>a]:font-medium [&>li>a]:text-gray-600">
+          {footerLinks.map(link => (
+            <li class="mr-4"><a href={link.href}>{link.text}</a></li>
+          ))
+          }
+        </ul>
+      </nav>
+    }
+  </div>
+
+  <!-- Background Image -->
+  <div class="absolute top-0 bottom-0 h-full w-full z-10">
+    <img
+      src={image}
+      alt="Model S"
+      class="h-full w-full object-center object-cover"
+    />
+  </div>
+</section>
