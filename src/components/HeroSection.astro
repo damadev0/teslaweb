@@ -3,15 +3,17 @@
   data-header-color="white"
 >
   <div class="z-30 relative h-full flex flex-col">
+    <!-- Titles -->
     <header class="pt-20">
-      <h2 class="text-white text-[40px] font-medium">Experience Tesla</h2>
-      <p class="text-white text-sm">Schedule a Demo Drive Today</p>
+      <h2 class="slide-titles delay-title text-white text-[40px] font-medium">Experience Tesla</h2>
+      <p class="slide-titles delay-subtitle second text-white text-sm">Schedule a Demo Drive Today</p>
     </header>
 
+    <!-- Button -->
     <footer class="flex flex-col flex-grow justify-end pb-24">
       <div>
         <a
-          class="border-[3px] border-white bg-white/5 backdrop-blur-sm rounded font-medium text-sm text-white px-20 py-2 inline-block hover:bg-white hover:text-black transition-colors"
+          class="button-fade-in border-[3px] border-white bg-white/5 backdrop-blur-sm rounded font-medium text-sm text-white px-20 py-2 inline-block hover:bg-white hover:text-black transition-colors"
           href="#"
         >
           Demo Drive
@@ -20,6 +22,7 @@
     </footer>
   </div>
 
+  <!-- Background video -->
   <div class="absolute top-0 bottom-0 h-full w-full z-10">
     <video
       class="object-center object-cover h-full w-full"
@@ -29,3 +32,34 @@
       src="/Homepage-Test_Drive-NA-Desktop.webm"></video>
   </div>
 </section>
+<style scoped>
+  .slide-titles {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: 0.75s slideIn forwards;
+    animation-delay: 1s;
+  }
+  .delay-subtitle {
+    opacity: 0;
+    animation-delay: 1.5s;
+  }
+  .button-fade-in {
+    opacity: 0;
+    animation: fadeIn 0.75s forwards;
+    animation-delay: 1.5s;
+  }
+  @keyframes slideIn {
+    0%   {
+      transform: translateY(30px);
+      opacity: 0;
+    }
+    100% { 
+      transform: translateY(0);
+      opacity: 1;      
+    }
+  }
+	@keyframes fadeIn {
+  	0% { opacity: 0; }
+  	100% { opacity: 1; }
+	}
+</style>

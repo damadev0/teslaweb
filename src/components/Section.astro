@@ -1,8 +1,8 @@
 ---
 // Still have to receive Footer and small bottom letter
 const { dataHeaderColor, image, title, subtitle, description, buttons, bottomText, footerLinks } = Astro.props
-const darkButton = "border-[3px] bg-zinc-700 border-zinc-700 backdrop-blur-sm rounded font-medium text-sm text-white px-20 py-2 inline-block hover:bg-zinc-300 hover:border-zinc-300 hover:text-zinc-700 transition-colors"
-const lightButton = "border-[3px] border-zinc-300 bg-zinc-300 backdrop-blur-sm rounded font-medium text-sm text-zinc-700 px-20 py-2 inline-block hover:bg-zinc-700 hover:border-zinc-700 hover:text-white transition-colors"
+const darkButton = "border-[3px] opacity-75 bg-zinc-700 border-zinc-700 backdrop-blur-sm rounded font-medium text-sm text-white px-20 py-2 inline-block hover:bg-zinc-300 hover:border-zinc-300 hover:text-zinc-700 transition-colors"
+const lightButton = "border-[3px] opacity-75 border-zinc-300 bg-zinc-300 backdrop-blur-sm rounded font-medium text-sm text-zinc-700 px-20 py-2 inline-block hover:bg-zinc-700 hover:border-zinc-700 hover:text-white transition-colors"
 
 ---
 
@@ -14,9 +14,9 @@ const lightButton = "border-[3px] border-zinc-300 bg-zinc-300 backdrop-blur-sm r
 
     <!-- Titles -->
     <header class="pt-20">
-      <h2 class="text-black text-[40px] font-medium">{title}</h2>
-      { subtitle && <p class={`text-black text-sm ${subtitle.underline && "underline"}`} >{subtitle.text}</p>}
-      { description && <p class="text-black text-sm">{description.text}</p> }
+      <h2 class={`text-${dataHeaderColor} text-[40px] font-medium`}>{title}</h2>
+      { subtitle && <p class={`text-${dataHeaderColor} text-sm ${subtitle.underline && "underline"}`} >{subtitle.text}</p>}
+      { description && <p class={`text-${dataHeaderColor} text-sm`}>{description.text}</p> }
     </header>
 
     <!-- Buttons -->
@@ -37,7 +37,7 @@ const lightButton = "border-[3px] border-zinc-300 bg-zinc-300 backdrop-blur-sm r
     </footer>
 
     <!-- Legal text -->
-    {bottomText && <div class="pb-4 text-xs">  <p>{bottomText}</p> </div> }
+    {bottomText && <div class={`pb-4 text-xs text-${dataHeaderColor}`}>  <p>{bottomText}</p> </div> }
   
     <!-- Footer Links -->
     { footerLinks &&
@@ -61,3 +61,4 @@ const lightButton = "border-[3px] border-zinc-300 bg-zinc-300 backdrop-blur-sm r
     />
   </div>
 </section>
+

@@ -14,7 +14,7 @@ import Logo from "./Logo.astro"
 	<!-- Center side Links -->
 	<nav class="px-2">
 		<ul
-			class="flex text-sm [&>li>a]:transition-colors [&>li>a]:duration-500 [&>li>a]:text-current [&>li>a]:font-medium [&>li>a]:inline-block [&>li>a]:px-4 [&>li>a]:py-2"
+			class="nav-links-fade-in flex text-sm [&>li>a]:transition-colors [&>li>a]:duration-500 [&>li>a]:text-current [&>li>a]:font-medium [&>li>a]:inline-block [&>li>a]:px-4 [&>li>a]:py-2"
 		>
 			<li><a href="#">Model S</a></li>
 			<li><a href="#">Model 3</a></li>
@@ -52,51 +52,61 @@ import Logo from "./Logo.astro"
 	</div>
 </header>
 
-		<!-- Nav Links Backdrop -->
-		<script>
-			const listItem = document.querySelectorAll("#landing-header li")
-			const menuBackDrop = document.querySelector("#menu-backdrop") as HTMLElement
-		
-			listItem.forEach((item) => {
-				item.addEventListener("mouseenter", () => {
-					const { left, top, width, height } = item.getBoundingClientRect()
-		
-					menuBackDrop.style.setProperty("--left", `${left}px`)
-					menuBackDrop.style.setProperty("--top", `${top}px`)
-					menuBackDrop.style.setProperty("--width", `${width}px`)
-					menuBackDrop.style.setProperty("--height", `${height}px`)
-		
-					menuBackDrop.style.opacity = "1"
-					menuBackDrop.style.visibility = "visible"
-				})
-		
-				item.addEventListener("mouseleave", () => {
-					menuBackDrop.style.opacity = "0"
-					menuBackDrop.style.visibility = "hidden"
-				})
-			})
-		</script>
+<!-- Nav Links Backdrop -->
+<script>
+	const listItem = document.querySelectorAll("#landing-header li")
+	const menuBackDrop = document.querySelector("#menu-backdrop") as HTMLElement
 
-		<!-- Scroll -->
-		<script>
-			const $header = document.querySelector('#landing-header') as HTMLElement
+	listItem.forEach((item) => {
+		item.addEventListener("mouseenter", () => {
+			const { left, top, width, height } = item.getBoundingClientRect()
 
-			const observerOptions = {
-				root: null,
-				rootMargin: '0px', // As soon as the element enters the viewport
-				threshold: 0.9 // 90% of the element visible
+			menuBackDrop.style.setProperty("--left", `${left}px`)
+			menuBackDrop.style.setProperty("--top", `${top}px`)
+			menuBackDrop.style.setProperty("--width", `${width}px`)
+			menuBackDrop.style.setProperty("--height", `${height}px`)
+
+			menuBackDrop.style.opacity = "1"
+			menuBackDrop.style.visibility = "visible"
+		})
+
+		item.addEventListener("mouseleave", () => {
+			menuBackDrop.style.opacity = "0"
+			menuBackDrop.style.visibility = "hidden"
+		})
+	})
+</script>
+
+<!-- Scroll -->
+<script>
+	const $header = document.querySelector('#landing-header') as HTMLElement
+
+	const observerOptions = {
+		root: null,
+		rootMargin: '0px', // As soon as the element enters the viewport
+		threshold: 0.9 // 90% of the element visible
+	}
+
+	const observer = new IntersectionObserver(entries => {
+		entries.forEach(entry => {
+			const { isIntersecting } = entry
+			if (isIntersecting) {
+				const color = entry.target.getAttribute('data-header-color')
+				$header.style.color = color
 			}
+		})
+	}, observerOptions)
 
-			const observer = new IntersectionObserver(entries => {
-				entries.forEach(entry => {
-					const { isIntersecting } = entry
-					if (isIntersecting) {
-						const color = entry.target.getAttribute('data-header-color')
-						$header.style.color = color
-					}
-				})
-			}, observerOptions)
+	const $sections = document.querySelectorAll('.landing-section')
+	$sections.forEach((section) => observer.observe(section))
+</script>
 
-			const $sections = document.querySelectorAll('.landing-section')
-			$sections.forEach((section) => observer.observe(section))
-		</script>
+<style scoped>
+  .nav-links-fade-in {
+    animation: fadeIn 1s;
+  }
+	@keyframes fadeIn {
+  	0% { opacity: 0; }
+  	100% { opacity: 1; }
+	}
+</style>
