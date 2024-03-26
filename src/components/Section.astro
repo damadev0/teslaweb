@@ -1,8 +1,8 @@
 ---
 // Still have to receive Footer and small bottom letter
 const { dataHeaderColor, image, title, subtitle, description, buttons, bottomText, footerLinks } = Astro.props
-const darkButton = "border-[3px] opacity-75 bg-zinc-700 border-zinc-700 backdrop-blur-sm rounded font-medium text-sm text-white px-20 py-2 inline-block hover:bg-zinc-300 hover:border-zinc-300 hover:text-zinc-700 transition-colors"
-const lightButton = "border-[3px] opacity-75 border-zinc-300 bg-zinc-300 backdrop-blur-sm rounded font-medium text-sm text-zinc-700 px-20 py-2 inline-block hover:bg-zinc-700 hover:border-zinc-700 hover:text-white transition-colors"
+const darkButton = "bg-zinc-900/[.6] text-white"
+const lightButton = "bg-white text-zinc-700"
 
 ---
 
@@ -20,16 +20,14 @@ const lightButton = "border-[3px] opacity-75 border-zinc-300 bg-zinc-300 backdro
     </header>
 
     <!-- Buttons -->
-    <!-- Must accept one button on black and on white -->
-    <!-- Change buttons background color -->
     <footer class="flex flex-col flex-grow justify-end pb-8">
       <div class="flex gap-x-6 mx-auto">
         {buttons.map(button => (
           <a
-            class={button.lightTheme ? lightButton : darkButton}
+            class={`${button.lightTheme ? lightButton : darkButton} opacity-75 hover:scale-105 duration-300 backdrop-blur rounded font-medium  px-20 py-3 inline-block [&>span]:text-sm`}
             href={button.href}
           >
-            {button.text}
+            <span>{button.text}</span>
           </a>
         ))
         }
@@ -42,9 +40,9 @@ const lightButton = "border-[3px] opacity-75 border-zinc-300 bg-zinc-300 backdro
     <!-- Footer Links -->
     { footerLinks &&
       <nav class="mb-20">
-        <ul class="flex justify-center align-center [&>li>a]:text-xs [&>li>a]:font-medium [&>li>a]:text-gray-600">
+        <ul class="flex justify-center gap-x-6 mx-auto [&>li>a]:text-xs [&>li>a]:font-medium [&>li>a]:text-white">
           {footerLinks.map(link => (
-            <li class="mr-4"><a href={link.href}>{link.text}</a></li>
+            <li><a href={link.href}>{link.text}</a></li>
           ))
           }
         </ul>
@@ -52,7 +50,7 @@ const lightButton = "border-[3px] opacity-75 border-zinc-300 bg-zinc-300 backdro
     }
   </div>
 
-  <!-- Background Image -->
+  <!-- Background Image !! Modify alt !! -->
   <div class="absolute top-0 bottom-0 h-full w-full z-10">
     <img
       src={image}
