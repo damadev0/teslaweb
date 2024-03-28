@@ -1,5 +1,4 @@
 ---
-// Still have to receive Footer and small bottom letter
 const { dataHeaderColor, image, title, subtitle, description, buttons, bottomText, footerLinks } = Astro.props
 const darkButton = "bg-zinc-900/[.6] text-white"
 const lightButton = "bg-white text-zinc-900"
@@ -22,7 +21,7 @@ const lightButton = "bg-white text-zinc-900"
 
     <!-- Buttons -->
     <footer class="flex flex-col flex-grow justify-end mb-8">
-      <div class="flex flex-col md:flex-row gap-x-6 gap-y-4 mx-auto">
+      <div class="flex flex-col mobile:flex-row gap-x-6 gap-y-4 mx-auto">
         {buttons.map(button => (
           <a
             class={`${button.lightTheme ? lightButton : darkButton} opacity-75 hover:scale-105 duration-300 backdrop-blur rounded font-medium  px-20 py-3 inline-block [&>span]:text-sm`}
