@@ -6,6 +6,12 @@ module.exports = {
 			sans: ['Gotham SSm A, sans-serif']
 		},
 		extend: {},
+		screens: {
+			'laptop': '1100px',
+			// => @media (min-width: 1024px) { ... }
+			'mobile': '640px',
+			// => @media (min-width: 640px) { ... }
+		},
 	},
 	plugins: [],
 }
