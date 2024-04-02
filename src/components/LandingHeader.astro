@@ -121,7 +121,7 @@ import Cross from "./Cross.astro"
 	const observerOptions = {
 		root: null,
 		rootMargin: '0px', // As soon as the element enters the viewport
-		threshold: 0.9 // 90% of the element visible
+		threshold: 1 // 90% of the element visible
 	}
 
 	const observer = new IntersectionObserver(entries => {
